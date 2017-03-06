@@ -1,2 +1,4 @@
-.tox/*
-openecomp_heatbridge.egg-info/*
+/.tox/
+/openecomp_heatbridge.egg-info/
+/.project
+/.pydevproject
