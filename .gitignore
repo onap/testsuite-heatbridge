@@ -1,4 +1,5 @@
 /.tox/
-/openecomp_heatbridge.egg-info/
+/heatbridge.egg-info/
 /.project
 /.pydevproject
+/target/
