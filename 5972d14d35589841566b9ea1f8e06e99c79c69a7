@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_7b09ca94",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2017-08-17T16:27:00Z",
+      "side": 1,
+      "message": "Group id should match the projectID\norg.onap.testsuite.heatbridge",
+      "range": {
+        "startLine": 6,
+        "startChar": 1,
+        "endLine": 6,
+        "endChar": 38
+      },
+      "revId": "5972d14d35589841566b9ea1f8e06e99c79c69a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_5bfe066d",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2017-08-17T16:27:00Z",
+      "side": 1,
+      "message": "fix trailing space",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "5972d14d35589841566b9ea1f8e06e99c79c69a7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
