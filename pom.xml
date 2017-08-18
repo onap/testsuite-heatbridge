@@ -8,6 +8,11 @@
 	<name>heatbridge</name>
 	<version>0.3</version>
 	<description>heatbridge used to stitch together some holes in the onap tests for release one</description>
+	<parent>
+		<groupId>org.onap.oparent</groupId>
+		<artifactId>oparent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<wheel.name>${project.artifactId}-${project.version}-py2-none-any.whl</wheel.name>
