@@ -9,11 +9,10 @@
 	<description>heatbridge used to stitch together some holes in the onap tests for release one</description>
 	<parent>
 		<groupId>org.onap.oparent</groupId>
-		<artifactId>oparent</artifactId>
+		<artifactId>oparent-python</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<wheel.name>${project.artifactId}-${python_version}-py2-none-any.whl</wheel.name>
 		<python.sourceDirectory>${project.basedir}/heatbridge</python.sourceDirectory>
 	</properties>
@@ -22,28 +21,9 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
 				<executions>
 					<execution>
-						<id>write-python-version</id>
-						<goals>
-							<goal>regex-property</goal>
-						</goals>
-						<phase>initialize</phase>
-						<configuration>
-							<name>python_version</name>
-							<regex>-SNAPSHOT</regex>
-							<value>${project.version}</value>
-							<replacement>\.dev0</replacement>
-							<failIfNoMatch>false</failIfNoMatch>
-						</configuration>
-					</execution>
-					<execution>
 						<id>attach-artifacts</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attach-artifact</goal>
-						</goals>
 						<configuration>
 							<artifacts>
 								<artifact>
@@ -51,6 +31,7 @@
 									<type>whl</type>
 								</artifact>
 							</artifacts>
+							<skipAttach>false</skipAttach>
 						</configuration>
 					</execution>
 				</executions>
@@ -58,43 +39,18 @@
 			<plugin>
 				<groupId>com.github.UltimateDogg</groupId>
 				<artifactId>maven-python-distribute-plugin</artifactId>
-				<version>0.2.0</version>
 				<configuration>
-					<packageVersion>${python_version}</packageVersion>
 					<sourceDirectory>${python.sourceDirectory}</sourceDirectory>
-					<distributionType>wheel</distributionType>
 				</configuration>
-				<executions>
-					<execution>
-						<id>package</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>process</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>process-sources</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>exec-maven-plugin</artifactId>
 				<groupId>org.codehaus.mojo</groupId>
-				<version>1.1.1</version>
 				<executions>
 					<execution>
 						<id>tox-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
 						<configuration>
 							<workingDirectory>${project.build.directory}/maven-python/heatbridge</workingDirectory>
-							<executable>tox</executable>
 						</configuration>
 					</execution>
 				</executions>
