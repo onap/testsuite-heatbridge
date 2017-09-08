@@ -4,7 +4,7 @@
 	<packaging>pom</packaging>
 	<groupId>org.onap.testsuite.heatbridge</groupId>
 	<artifactId>heatbridge</artifactId>
-	<name>heatbridge</name>
+	<name>testsuite-heatbridge</name>
 	<version>0.3.0-SNAPSHOT</version>
 	<description>heatbridge used to stitch together some holes in the onap tests for release one</description>
 	<parent>
