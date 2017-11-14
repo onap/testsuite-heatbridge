@@ -45,7 +45,7 @@ class AAIManager:
         volumes = []
         body['volumes'] = volumes
         for volume in volumes_dict:
-            volumes['volume'] = self.create_volume(volume);
+            volumes.append(self.create_volume(volume));
 
         relations = [];
         if self.__exists(server_info_dict['metadata'], 'vnf_id'):
@@ -94,6 +94,7 @@ class AAIManager:
     def create_volume(self, volume_dict):
         #setup
         volume = dict()
+        if 'volume' in volume_dict:
         volume['volume-id'] = volume_dict['volume']['id']
         #volume['volume-selflink']
         #volume['resource-version']
