@@ -2,10 +2,10 @@ from collections import defaultdict
 
 class AAIManager:
     """AAIManager manages the connection state and interaction between an aai instance and the heatbridge."""
-    
+
     def __init__(self, context):
         self.openstack_context = context;
-        
+
     def get_link(self, links, link_type):
         for link in links:
             if link['rel'] == link_type:
@@ -15,19 +15,19 @@ class AAIManager:
         transactions = defaultdict(list);
         for arg in args:
             transactions['transactions'].extend(arg);
-        return transactions;    
-    
+        return transactions;
+
     def create_put(self, *args):
         put = defaultdict(list);
         put['put'].extend(args);
         return put;
-        
+
     def create_vserver_put(self, server_info_dict, volumes_dict):
         #setup
         put = dict();
         body = dict();
         put['body'] = body;
-        
+
         #required fields
         put['uri'] = "/cloud-infrastructure/cloud-regions/cloud-region/" + self.openstack_context.owner \
         + "/" + self.openstack_context.region + "/tenants/tenant/" + self.openstack_context.tenant \
@@ -40,14 +40,14 @@ class AAIManager:
         #body['in-maint'];
         #body['is-closed-loop-disabled'];
         #body['resource-version'];
-        
+
         #optional fields
         volumes = []
         body['volumes'] = volumes
         for volume in volumes_dict:
             volumes['volume'] = self.create_volume(volume);
-        
-        relations = []; 
+
+        relations = [];
         if self.__exists(server_info_dict['metadata'], 'vnf_id'):
             data = self.__create_relationship_data("generic-vnf", "vnf-id", server_info_dict['metadata']['vnf_id']);
             list = self.__create_relationship_data_list(data);
@@ -90,22 +90,22 @@ class AAIManager:
         relationship_data['relationship-key'] = parent + "." + key;
         relationship_data['relationship-value'] = value;
         return relationship_data;
-    
+
     def create_volume(self, volume_dict):
         #setup
         volume = dict()
         volume['volume-id'] = volume_dict['volume']['id']
         #volume['volume-selflink']
         #volume['resource-version']
-        #volume['relationship-list']   
+        #volume['relationship-list']
         return volume;
-    
+
     def create_flavor_put(self, flavor_dict):
         #setup
         put = dict();
         body = dict()
         put['body'] = body
-        
+
         #required fields
         put['uri'] = "/cloud-infrastructure/cloud-regions/cloud-region/" + self.openstack_context.owner \
         + "/" + self.openstack_context.region + "/flavors/flavor/" + flavor_dict['id']
@@ -123,7 +123,7 @@ class AAIManager:
         #body['flavor-disabled']
         #body['relationship-list']
         return put
-    
+
     def create_image_put(self, image_dict, server_info):
         #setup
         put = dict();
@@ -136,28 +136,42 @@ class AAIManager:
         body['image-selflink'] = self.get_link(server_info['image']['links'], "bookmark");
         if self.__exists(image_dict, 'org.openstack__1__architecture'):
             body['image-architecture'] = image_dict['org.openstack__1__architecture']
+        else:
+            body['image-architecture'] = 'unknown'
         if self.__exists(image_dict, 'org.openstack__1__os_distro'):
             body['image-name'] = image_dict['org.openstack__1__os_distro']
+        else:
+            body['image-name'] = 'unknown'
         if self.__exists(image_dict, 'org.openstack__1__os_version'):
             body['image-os-version'] = image_dict['org.openstack__1__os_version']
+        else:
+            body['image-os-version'] = 'unknown'
         if self.__exists(image_dict, 'org.openstack__1__application_version'):
             body['application-version'] = image_dict['org.openstack__1__application_version']
+        else:
+            body['application-version'] = 'unknown'
         if self.__exists(image_dict, 'org.openstack__1__application_vendor'):
             body['application-vendor'] = image_dict['org.openstack__1__application_vendor']
+        else:
+            body['application-vendor'] = 'unknown'
         if self.__exists(image_dict, 'org.openstack__1__application'):
             body['application'] = image_dict['org.openstack__1__application']
+        else:
+            body['application'] = 'unknown'
         if self.__exists(image_dict, 'os_distro'):
             body['image-os-distro'] = image_dict['os_distro']
+        else:
+            body['image-os-distro'] = 'unknown'
         #body['metadata']
         #body['relationship-list'];
         return put
-    
+
     def __exists(self, the_dict, key):
         if key in the_dict and the_dict[key] != "":
             return True;
         else:
             return False;
-    
+
     def create_l_interface_put(self, port_dict, server_info_dict):
         #setup
         port = port_dict['port']
@@ -178,17 +192,17 @@ class AAIManager:
         for ips in port['fixed_ips']:
             if '.' in ips['ip_address']:
                 v4list.append(self.create_l3_interface_ipv4_address(port, ips));
-            if ':' in ips['ip_address']: 
+            if ':' in ips['ip_address']:
                 v6list.append(self.create_l3_interface_ipv6_address(port, ips));
         body['network-name'] = port['network_id']
         #body['selflink']
         #body['interface-role']
         #body['v6-wan-link-ip']
         #body['management-option']
-        
+
         #optional fields
         return put
-            
+
     def create_l3_interface_ipv4_address(self, port_dict, fixed_ip):
         #setup
         address = dict()
@@ -199,9 +213,9 @@ class AAIManager:
         #address['vlan-id-inner']
         #address['vlan-id-outer']
         #address['is-floating']
-        #address['relationship-list']   
+        #address['relationship-list']
         return address;
-    
+
     def create_l3_interface_ipv6_address(self, port_dict, fixed_ip):
         #setup
         address = dict()
@@ -212,8 +226,8 @@ class AAIManager:
         #address['vlan-id-inner']
         #address['vlan-id-outer']
         #address['is-floating']
-        #address['relationship-list']   
+        #address['relationship-list']
         return address;
-    
+
     def load_aai_data(self, request):
         return True;

@@ -8,7 +8,7 @@ import logging
 
 class OpenstackManager:
     """OpenstackManager manages the connection state and interaction between an openstack cloud and the heatbridge."""
-    
+
     #this holds the session of the openstack clients
     __heat_client = None;
     __nova_client = None;
@@ -20,8 +20,8 @@ class OpenstackManager:
     def __init__(self, identity_url, context):
         """ OpenstackManager
 
-        `identity_url` Base identity_url of the identity server   
-        'context' Instance of OpenstackContext     
+        `identity_url` Base identity_url of the identity server
+        'context' Instance of OpenstackContext
         """
         self.openstack_context = context;
         self.identity_url = identity_url;
@@ -32,54 +32,54 @@ class OpenstackManager:
         """ Authenticate to openstack env
 
         `username` username to authenticate to openstack
-        
+
         `password` password to send
-        
+
         `tenant` tenant to authenticate under
-        
+
         `region` region to authenticate under
         """
         self.__heat_client = os_client_config.make_client('orchestration',
             auth_url=self.identity_url,
             username=username,
             password=password,
-            project_name=tenant,
+            project_id=tenant,
             region_name=region);
         self.__nova_client = os_client_config.make_client('compute',
             auth_url=self.identity_url,
             username=username,
             password=password,
-            project_name=tenant,
+            project_id=tenant,
             region_name=region);
         self.__cinder_client = os_client_config.make_client('volume',
             auth_url=self.identity_url,
             username=username,
             password=password,
-            project_name=tenant,
+            project_id=tenant,
             region_name=region);
         self.__glance_client = os_client_config.make_client('image',
             auth_url=self.identity_url,
             username=username,
             password=password,
-            project_name=tenant,
+            project_id=tenant,
             region_name=region);
         self.__neutron_client = os_client_config.make_client('network',
             auth_url=self.identity_url,
             username=username,
             password=password,
-            project_name=tenant,
+            project_id=tenant,
             region_name=region);
         #this next line is needed because for v2 apis that are after a certain release stopped providing version info in keytone url but rackspace did not
         self.__neutron_client.action_prefix = "";
         self.__auth_resp = True;
-        
+
     def get_stack(self, stack_id):
         self.__check_authenticated()
         #: :type client: HeatClient
         client = self.__heat_client
         stack = client.stacks.get(stack_id)
         return stack.to_dict();
-    
+
     def get_stack_resources(self, stack_id):
         self.__check_authenticated()
         #: :type client: HeatClient
@@ -87,7 +87,7 @@ class OpenstackManager:
         stack_resources =  client.resources.list(stack_id);
         stack_resources_dict = map(lambda x:x.to_dict(),stack_resources)
         return stack_resources_dict;
-    
+
     def get_server_volumes(self, server_id):
         self.__check_authenticated()
         #: :type client: NovaClient
@@ -95,7 +95,7 @@ class OpenstackManager:
         server_volumes = client.volumes.get_server_volumes(server_id);
         server_volumes_dict = map(lambda x:x.to_dict(),server_volumes)
         return server_volumes_dict;
-    
+
     def get_server_interfaces(self, server_id):
         self.__check_authenticated()
         #: :type client: NovaClient
@@ -138,7 +138,7 @@ class OpenstackManager:
         client = self.__neutron_client;
         port_info = client.show_port(port_id);
         return port_info;
-    
+
     def __check_authenticated(self):
         if self.__auth_resp == None:
             raise AssertionError('__auth_resp should exist before calling operation')
