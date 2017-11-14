@@ -95,7 +95,7 @@ class AAIManager:
         #setup
         volume = dict()
         if 'volume' in volume_dict:
-        volume['volume-id'] = volume_dict['volume']['id']
+            volume['volume-id'] = volume_dict['volume']['id']
         #volume['volume-selflink']
         #volume['resource-version']
         #volume['relationship-list']
