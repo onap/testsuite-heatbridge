@@ -136,18 +136,32 @@ class AAIManager:
         body['image-selflink'] = self.get_link(server_info['image']['links'], "bookmark");
         if self.__exists(image_dict, 'org.openstack__1__architecture'):
             body['image-architecture'] = image_dict['org.openstack__1__architecture']
+        else:
+            body['image-architecture'] = 'unknown'    
         if self.__exists(image_dict, 'org.openstack__1__os_distro'):
             body['image-name'] = image_dict['org.openstack__1__os_distro']
+        else:
+            body['image-name'] = 'unknown'    
         if self.__exists(image_dict, 'org.openstack__1__os_version'):
             body['image-os-version'] = image_dict['org.openstack__1__os_version']
+        else:
+            body['image-os-version'] = 'unknown'    
         if self.__exists(image_dict, 'org.openstack__1__application_version'):
             body['application-version'] = image_dict['org.openstack__1__application_version']
+        else:
+            body['application-version'] = 'unknown'    
         if self.__exists(image_dict, 'org.openstack__1__application_vendor'):
             body['application-vendor'] = image_dict['org.openstack__1__application_vendor']
+        else:
+            body['application-vendor'] = 'unknown'    
         if self.__exists(image_dict, 'org.openstack__1__application'):
             body['application'] = image_dict['org.openstack__1__application']
+        else:
+            body['application'] = 'unknown'    
         if self.__exists(image_dict, 'os_distro'):
             body['image-os-distro'] = image_dict['os_distro']
+        else:
+            body['image-os-distro'] = 'unknown'    
         #body['metadata']
         #body['relationship-list'];
         return put
@@ -217,3 +231,4 @@ class AAIManager:
     
     def load_aai_data(self, request):
         return True;
+    
