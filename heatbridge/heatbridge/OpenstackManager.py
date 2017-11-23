@@ -136,6 +136,10 @@ class OpenstackManager:
         self.__check_authenticated()
         #: :type client: NeutronClient
         client = self.__neutron_client;
+        try:
+            port_info = client.show_port(port_id);
+        except Exception as e:
+            client.action_prefix = "/v2.0";
         port_info = client.show_port(port_id);
         return port_info;
 
