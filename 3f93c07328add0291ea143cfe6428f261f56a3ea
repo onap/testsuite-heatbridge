@@ -1,0 +1,7 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Daniel Rose <dr695h@att.com>
+Submitted-by: Daniel Rose <dr695h@att.com>
+Submitted-at: Wed, 29 Nov 2017 02:07:21 +0000
+Reviewed-on: https://gerrit.onap.org/r/25141
+Project: testsuite/heatbridge
+Branch: refs/heads/master
