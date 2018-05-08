@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.onap.oparent</groupId>
 		<artifactId>oparent-python</artifactId>
-		<version>1.1.0-SNAPSHOT</version>
+		<version>1.1.0</version>
 	</parent>
 	<properties>
 		<wheel.name>${project.artifactId}-${python_version}-py2-none-any.whl</wheel.name>
@@ -37,13 +37,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.github.UltimateDogg</groupId>
-				<artifactId>maven-python-distribute-plugin</artifactId>
-				<configuration>
-					<sourceDirectory>${python.sourceDirectory}</sourceDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
 				<artifactId>exec-maven-plugin</artifactId>
 				<groupId>org.codehaus.mojo</groupId>
 				<executions>
@@ -57,11 +50,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>com.github.UltimateDogg</groupId>
-			<artifactId>maven-python-distribute-plugin</artifactId>
-			<version>0.2.0</version>
-		</dependency>
-	</dependencies>
 </project>
