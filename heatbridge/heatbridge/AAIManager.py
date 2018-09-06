@@ -52,6 +52,10 @@ class AAIManager:
             data = self.__create_relationship_data("generic-vnf", "vnf-id", server_info_dict['metadata']['vnf_id']);
             list = self.__create_relationship_data_list(data);
             relations.append(self.__create_relationship("generic-vnf", list));
+        if self.__exists(server_info_dict['metadata'], 'vf_module_id'):
+            data = self.__create_relationship_data("vf-module", "vf-module-id", server_info_dict['metadata']['vf_module_id']);
+            list = self.__create_relationship_data_list(data);
+            relations.append(self.__create_relationship("generic-vnf", list));
         if self.__exists(server_info_dict['flavor'], 'id'):
             data = self.__create_relationship_data("flavor", "flavor-id", server_info_dict['flavor']['id']);
             data2 = self.__create_relationship_data("cloud-region", "cloud-owner", self.openstack_context.owner);
