@@ -25,10 +25,10 @@ class OpenstackManager:
         """
         self.openstack_context = context;
         self.identity_url = identity_url;
-        self.authenticate(context.username, context.password, context.tenant, context.region)
+        self.authenticate(context.username, context.password, context.tenant, context.region, context.domain_id, context.project_name)
         logging.basicConfig(level=logging.DEBUG)
 
-    def authenticate(self, username, password, tenant, region):
+    def authenticate(self, username, password, tenant, region, domain_id,project_name):
         """ Authenticate to openstack env
 
         `username` username to authenticate to openstack
@@ -44,31 +44,41 @@ class OpenstackManager:
             username=username,
             password=password,
             project_id=tenant,
-            region_name=region);
+            region_name=region,
+            domain_id=domain_id,
+            project_name=project_name);
         self.__nova_client = os_client_config.make_client('compute',
             auth_url=self.identity_url,
             username=username,
             password=password,
             project_id=tenant,
-            region_name=region);
+            region_name=region,
+            domain_id=domain_id,
+            project_name=project_name);
         self.__cinder_client = os_client_config.make_client('volume',
             auth_url=self.identity_url,
             username=username,
             password=password,
             project_id=tenant,
-            region_name=region);
+            region_name=region,
+            domain_id=domain_id,
+            project_name=project_name);
         self.__glance_client = os_client_config.make_client('image',
             auth_url=self.identity_url,
             username=username,
             password=password,
             project_id=tenant,
-            region_name=region);
+            region_name=region,
+            domain_id=domain_id,
+            project_name=project_name);
         self.__neutron_client = os_client_config.make_client('network',
             auth_url=self.identity_url,
             username=username,
             password=password,
             project_id=tenant,
-            region_name=region);
+            region_name=region,
+            domain_id=domain_id,
+            project_name=project_name);
         #this next line is needed because for v2 apis that are after a certain release stopped providing version info in keytone url but rackspace did not
         self.__neutron_client.action_prefix = "";
         self.__auth_resp = True;

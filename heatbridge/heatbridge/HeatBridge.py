@@ -7,9 +7,10 @@ class HeatBridge:
     def __init__(self):
         pass;
 
-    def init_bridge(self, openstack_identity_url, username, password, tenant, region, owner):
-        self.om = OpenstackManager(openstack_identity_url, OpenstackContext(username, password, tenant, region, owner));
-        self.am = AAIManager(OpenstackContext(username, password, tenant, region, owner));
+    def init_bridge(self, openstack_identity_url, username, password, tenant, region, owner, domain_id=None, project_name=None):
+        self.om = OpenstackManager(openstack_identity_url, OpenstackContext(username, password, tenant, region, owner, domain_id, project_name));
+        self.am = AAIManager(OpenstackContext(username, password, tenant, region, owner, domain_id, project_name));
+ 
 
     def filterbyvalue(self, seq, key, value):
         for el in seq:
