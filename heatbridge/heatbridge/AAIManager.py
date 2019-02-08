@@ -69,6 +69,10 @@ class AAIManager:
             data3 = self.__create_relationship_data("cloud-region", "cloud-region-id", self.openstack_context.region);
             list = self.__create_relationship_data_list(data, data2, data3);
             relations.append(self.__create_relationship("image", list));
+        #Add a relation to VNFC
+        data = self.__create_relationship_data("vnfc", "vnfc-name", server_info_dict['name']);
+        list = self.__create_relationship_data_list(data);
+        relations.append(self.__create_relationship("vnfc", list));
         body['relationship-list'] = self.__create_relationship_list(relations);
         return put
 
