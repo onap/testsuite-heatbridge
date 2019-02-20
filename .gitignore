@@ -1,5 +1,10 @@
-/.tox/
-/heatbridge.egg-info/
-/.project
+.tox
+heatbridge.egg-info
+.project
 /.pydevproject
 /target/
+*.pyc
+.coverage
+cover
+coverage.xml
+nosetests.xml
