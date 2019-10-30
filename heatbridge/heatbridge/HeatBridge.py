@@ -10,7 +10,7 @@ class HeatBridge:
     def init_bridge(self, openstack_identity_url, username, password, tenant, region, owner, domain_id=None, project_name=None):
         self.om = OpenstackManager(openstack_identity_url, OpenstackContext(username, password, tenant, region, owner, domain_id, project_name));
         self.am = AAIManager(OpenstackContext(username, password, tenant, region, owner, domain_id, project_name));
- 
+
 
     def filterbyvalue(self, seq, key, value):
         for el in seq:
@@ -23,9 +23,9 @@ class HeatBridge:
         #subnets = list(self.filterbyvalue(resources, "resource_type", "OS::Neutron::Subnet"));
         ports = list(self.filterbyvalue(resources, "resource_type", "OS::Neutron::Port"));
         #keys = list(self.filterbyvalue(resources, "resource_type", "OS::Nova::KeyPair"));
-        
+
         put_blocks = []
-        
+
         #build the servers and attach them to vnf
         server_put_blocks = []
         image_put_blocks = []
@@ -60,8 +60,8 @@ class HeatBridge:
         put_blocks.extend(linterface_put_blocks);
 
         return json.dumps(self.am.create_transactions(put_blocks));
-        
+
     def bridge_data(self, heat_stack_id):
         request = self.build_request(heat_stack_id);
-        print request;
+        print(request);
         return request;
