@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Morgan Richomme <morgan.richomme@orange.com>
+Code-Review+2: Daniel Rose <dr695h@att.com>
+Verified+1: Daniel Rose <dr695h@att.com>
+Submitted-by: Daniel Rose <dr695h@att.com>
+Submitted-at: Wed, 06 Nov 2019 17:30:37 +0000
+Reviewed-on: https://gerrit.onap.org/r/c/testsuite/heatbridge/+/97760
+Project: testsuite/heatbridge
+Branch: refs/heads/master
