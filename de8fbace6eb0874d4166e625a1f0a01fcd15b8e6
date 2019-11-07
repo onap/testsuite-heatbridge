@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "829c69b9_723275b4",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 4677
+      },
+      "writtenOn": "2019-11-07T09:46:38Z",
+      "side": 1,
+      "message": "Should be a TSC approval link for this change at the bottom.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 3
+      },
+      "revId": "de8fbace6eb0874d4166e625a1f0a01fcd15b8e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1955a23_f06f572d",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 4677
+      },
+      "writtenOn": "2019-11-07T09:46:38Z",
+      "side": 1,
+      "message": "Here you should list all additions/changes/removal with corresponding link to Approval mail.\nfor instance\n        - type: \u0027Addition\u0027\n\t  name: \u0027Ofir Sonsino\u0027\n\t  link: \u0027https://wiki.onap.org/pages/viewpage.action?pageId\u003d45305945\u0027\n\t- type: \u0027Removal\u0027\n\t  name: \u0027Michael Lando\u0027\n\t  link: \u0027https://lists.onap.org/g/onap-tsc/message/4239\u0027",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 3
+      },
+      "revId": "de8fbace6eb0874d4166e625a1f0a01fcd15b8e6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
