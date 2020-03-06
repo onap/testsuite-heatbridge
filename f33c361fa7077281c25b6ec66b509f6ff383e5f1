@@ -16,6 +16,24 @@
       "revId": "f33c361fa7077281c25b6ec66b509f6ff383e5f1",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "425f3e59_f9e60f96",
+        "filename": "heatbridge/tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5097
+      },
+      "writtenOn": "2020-03-06T11:01:41Z",
+      "side": 1,
+      "message": "Not sure i follow you - I removed that target and [testenv:py3] section referenced by it because it was unused (no \"commands\" in that section). It\u0027s not needed (that target) to still be able to run \"pep8\" or \"pylint\" target.\n\nIf you run e.g. \"tox -e pylint\" it\u0027ll still work - tox will spin up virtualenv with basepython Python release (python3 in this case) and run the command.",
+      "parentUuid": "cbc17771_358ef245",
+      "revId": "f33c361fa7077281c25b6ec66b509f6ff383e5f1",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
     }
   ]
 }
