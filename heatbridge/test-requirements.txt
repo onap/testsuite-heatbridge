@@ -6,3 +6,4 @@ nose # LGPL
 flake8 # MIT
 pylint # GPLv2
 more-itertools~=5.0.0
+pytest
